@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --primary: #5B6CFF;
-  --primary-dark: #4A58D9;
-  --primary-light: #8B96FF;
-  --secondary: #7C4DFF;
+  --primary: #192A41;
+  --primary-dark: #0F1A2A;
+  --primary-light: #2A4060;
+  --secondary: #4A6D8C;
   --accent: #00C2A8;
   --accent-light: #00E5C7;
   --highlight: #FF8A3D;
@@ -373,6 +373,7 @@ ul {
   padding: 11px 26px !important;
   font-size: 0.82rem !important;
   border-radius: var(--radius-xl) !important;
+  color: #ffffff !important;
 }
 
 .nav-toggle {
@@ -592,12 +593,30 @@ ul {
   position: relative;
 }
 
-.about-image img {
+.about-image .carousel-container {
+  position: relative;
   width: 100%;
   height: 520px;
-  object-fit: cover;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-elevated);
+  overflow: hidden;
+}
+
+.about-image .carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1.5s ease-in-out;
+  transform: scale(1.05);
+}
+
+.about-image .carousel-slide.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Decorative frame */

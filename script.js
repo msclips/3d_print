@@ -313,3 +313,15 @@ document.querySelectorAll('.service-card').forEach(card => {
     card.style.transform = '';
   });
 });
+
+// ===== ABOUT IMAGE CAROUSEL =====
+const carouselSlides = document.querySelectorAll('.about-image .carousel-slide');
+if (carouselSlides.length > 0) {
+  let currentSlideIndex = 0;
+  
+  setInterval(() => {
+    carouselSlides[currentSlideIndex].classList.remove('active');
+    currentSlideIndex = (currentSlideIndex + 1) % carouselSlides.length;
+    carouselSlides[currentSlideIndex].classList.add('active');
+  }, 4000); // Change image every 4 seconds
+}
