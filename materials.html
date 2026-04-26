@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Material Selection Guide — Choose the right 3D printing material for your application. Compare strength, flexibility, heat resistance, and cost.">
+  <title>Material Selection Guide | Layer Lab Lineage</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" href="images/LOGO_TRANS.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== PAGE LOADER ===== -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Layer Lab Lineage</div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/LOGO_TRANS.png" alt="Layer Lab Lineage Logo">
+        <span>Layer Lab Lineage</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="services.html">Services</a>
+        <a href="materials.html" style="color: var(--primary);">Materials</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#testimonials">Reviews</a>
+        <a href="index.html#contact" class="btn btn-primary nav-cta">Get a Quote</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero hero-materials" id="hero" style="min-height: 70vh;">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-layer-group"></i> Material Selection Guide
+        </div>
+        <h1>
+          <span class="hero-line-1">Choose the Right Material</span>
+          <span class="hero-line-2">For Your Application</span>
+        </h1>
+        <p class="hero-description">From concept prototypes to production-ready parts — compare strength, flexibility, temperature resistance, and cost to make the best choice.</p>
+        <div class="hero-buttons">
+          <a href="index.html#contact" class="btn btn-accent">
+            <i class="fas fa-paper-plane"></i> Get Instant Quote
+          </a>
+          <a href="tel:+919876543210" class="btn btn-outline">
+            <i class="fas fa-headset"></i> Talk to Expert
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE SELECTOR ===== -->
+  <section style="background: var(--bg); padding-bottom: 60px;">
+    <div class="container">
+      <div class="material-selector reveal">
+        <div class="section-header" style="margin-bottom: 30px;">
+          <h2 class="section-title" style="font-size: 2.2rem;">Not Sure What to <span class="highlight">Choose?</span></h2>
+          <p class="section-subtitle">Select your primary requirement below to get an instant recommendation.</p>
+        </div>
+        <div class="material-filters">
+          <button class="filter-btn active" data-rec="ABS / Nylon" data-desc="Tough engineering plastics ideal for functional parts.">💪 Strong & Durable</button>
+          <button class="filter-btn" data-rec="Resin" data-desc="Ultra-smooth finish for miniatures and jewelry.">✨ High Detail</button>
+          <button class="filter-btn" data-rec="TPU" data-desc="Rubber-like material for gaskets and wearables.">🧩 Flexible</button>
+          <button class="filter-btn" data-rec="PLA" data-desc="Easy-to-print, eco-friendly material for visual models.">💰 Budget Friendly</button>
+          <button class="filter-btn" data-rec="ABS / Nylon / PETG" data-desc="Materials that can withstand higher operating temperatures.">🔥 Heat Resistant</button>
+        </div>
+        <div class="selector-output" id="selectorOutput">
+          Recommended Material: <span style="color: var(--accent);">ABS / Nylon</span>
+          <div style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-top: 8px;" id="selectorDesc">Tough engineering plastics ideal for functional parts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <section class="materials-table" style="padding: var(--section-py) 0; background: var(--bg-soft);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label"><i class="fas fa-table"></i> Specifications</span>
+        <h2 class="section-title">Material <span class="highlight">Comparison</span></h2>
+      </div>
+      <div class="comparison-table-wrapper reveal">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>Strength</th>
+              <th>Flexibility</th>
+              <th>Heat Resistance</th>
+              <th>Surface Finish</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PLA</strong></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td>Smooth</td>
+              <td><span class="badge badge-low">Low</span></td>
+            </tr>
+            <tr>
+              <td><strong>ABS</strong></td>
+              <td><span class="badge badge-high">High</span></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td>Matte</td>
+              <td><span class="badge badge-med">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>PETG</strong></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td>Glossy</td>
+              <td><span class="badge badge-med">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>TPU</strong></td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td><span class="badge badge-high" style="background:rgba(16,185,129,0.1);color:#059669;">Very High</span></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td>Rubber-like</td>
+              <td><span class="badge badge-high">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Nylon</strong></td>
+              <td><span class="badge badge-high" style="background:rgba(16,185,129,0.1);color:#059669;">Very High</span></td>
+              <td><span class="badge badge-high">High</span></td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>Slight Rough</td>
+              <td><span class="badge badge-high">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Resin</strong></td>
+              <td><span class="badge badge-med">Medium</span></td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td><span class="badge badge-low">Low</span></td>
+              <td>Very Smooth</td>
+              <td><span class="badge badge-high">High</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GRAPH COMPARISON ===== -->
+  <section style="padding: var(--section-py) 0; background: var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label"><i class="fas fa-chart-bar"></i> Performance Analytics</span>
+        <h2 class="section-title">Visual <span class="highlight">Comparison</span></h2>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card reveal stagger-1">
+          <h3>Strength Comparison</h3>
+          <div style="position: relative; height: 300px;">
+            <canvas id="strengthChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card reveal stagger-2">
+          <h3>Flexibility Comparison</h3>
+          <div style="position: relative; height: 300px;">
+            <canvas id="flexChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATERIAL CARDS ===== -->
+  <section style="padding: var(--section-py) 0; background: var(--bg-soft);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label"><i class="fas fa-info-circle"></i> Deep Dive</span>
+        <h2 class="section-title">Detailed <span class="highlight">Materials</span></h2>
+      </div>
+      <div class="material-cards-grid">
+        
+        <!-- PLA -->
+        <div class="mat-card reveal stagger-1">
+          <div class="mat-card-header">
+            <h3>PLA</h3>
+            <div class="mat-icon"><i class="fas fa-leaf"></i></div>
+          </div>
+          <h4>Best for Prototypes</h4>
+          <p>Easy-to-print, eco-friendly material ideal for visual models and basic prototypes.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Concept models</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Display parts</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Low-stress applications</li>
+          </ul>
+          <div class="mat-list-title">Not Recommended For</div>
+          <ul class="mat-list">
+            <li class="con"><i class="fas fa-times-circle"></i> Heat exposure</li>
+            <li class="con"><i class="fas fa-times-circle"></i> Mechanical load</li>
+          </ul>
+        </div>
+
+        <!-- ABS -->
+        <div class="mat-card reveal stagger-2">
+          <div class="mat-card-header">
+            <h3>ABS</h3>
+            <div class="mat-icon"><i class="fas fa-shield-alt"></i></div>
+          </div>
+          <h4>Strong & Durable</h4>
+          <p>Tough engineering plastic with good heat resistance.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Functional parts</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Enclosures</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Automotive components</li>
+          </ul>
+        </div>
+
+        <!-- PETG -->
+        <div class="mat-card reveal stagger-3">
+          <div class="mat-card-header">
+            <h3>PETG</h3>
+            <div class="mat-icon"><i class="fas fa-balance-scale"></i></div>
+          </div>
+          <h4>Balanced Material</h4>
+          <p>Combines the strength of ABS and the ease of printing of PLA.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Mechanical parts</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Transparent components</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Outdoor use</li>
+          </ul>
+        </div>
+
+        <!-- TPU -->
+        <div class="mat-card reveal stagger-1">
+          <div class="mat-card-header">
+            <h3>TPU</h3>
+            <div class="mat-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+          </div>
+          <h4>Flexible Material</h4>
+          <p>Rubber-like material for flexible applications and impact resistance.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Gaskets & Seals</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Wearables</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Shock absorption parts</li>
+          </ul>
+        </div>
+
+        <!-- Nylon -->
+        <div class="mat-card reveal stagger-2">
+          <div class="mat-card-header">
+            <h3>Nylon</h3>
+            <div class="mat-icon"><i class="fas fa-cogs"></i></div>
+          </div>
+          <h4>Engineering Grade</h4>
+          <p>High strength and wear-resistant material for demanding applications.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Gears & Bearings</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Functional prototypes</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Load-bearing parts</li>
+          </ul>
+        </div>
+
+        <!-- Resin -->
+        <div class="mat-card reveal stagger-3">
+          <div class="mat-card-header">
+            <h3>Resin</h3>
+            <div class="mat-icon"><i class="fas fa-gem"></i></div>
+          </div>
+          <h4>High Detail</h4>
+          <p>Used in SLA printing for ultra-smooth and incredibly detailed parts.</p>
+          <div class="mat-list-title">Best For</div>
+          <ul class="mat-list">
+            <li class="pro"><i class="fas fa-check-circle"></i> Miniatures</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Jewelry casting</li>
+            <li class="pro"><i class="fas fa-check-circle"></i> Dental models</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USE CASE RECOMMENDATION ===== -->
+  <section style="padding: var(--section-py) 0; background: var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Choose Material Based on <span class="highlight">Use Case</span></h2>
+      </div>
+      <div class="comparison-table-wrapper reveal" style="max-width: 800px; margin: 0 auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Recommended Material</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fas fa-box" style="color:var(--primary); margin-right:8px;"></i> Prototype</td>
+              <td><strong>PLA</strong></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-cogs" style="color:var(--primary); margin-right:8px;"></i> Functional Part</td>
+              <td><strong>ABS / Nylon</strong></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-bacon" style="color:var(--primary); margin-right:8px;"></i> Flexible Part</td>
+              <td><strong>TPU</strong></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-chess-knight" style="color:var(--primary); margin-right:8px;"></i> High Detail Model</td>
+              <td><strong>Resin</strong></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-sun" style="color:var(--primary); margin-right:8px;"></i> Outdoor Use</td>
+              <td><strong>PETG</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REAL WORLD EXAMPLES ===== -->
+  <section style="padding: var(--section-py) 0; background: #0a0a1a;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.2);"><i class="fas fa-camera"></i> Gallery</span>
+        <h2 class="section-title" style="color:#fff;">See How Materials Perform in <span class="highlight">Real Applications</span></h2>
+      </div>
+      <div class="examples-grid">
+        <div class="example-card reveal stagger-1">
+          <img src="images/IMG-20251205-WA0025.jpg.jpeg" alt="ABS Enclosure">
+          <div class="example-overlay">
+            <span>ABS</span>
+            <h4>Electronics Enclosure</h4>
+          </div>
+        </div>
+        <div class="example-card reveal stagger-2">
+          <img src="images/p.jpeg" alt="TPU Part">
+          <div class="example-overlay">
+            <span>TPU</span>
+            <h4>Flexible Stand</h4>
+          </div>
+        </div>
+        <div class="example-card reveal stagger-3">
+          <img src="images/IMG-20251205-WA0021.jpg.jpeg" alt="Nylon Gear">
+          <div class="example-overlay">
+            <span>Nylon</span>
+            <h4>Mechanical Components</h4>
+          </div>
+        </div>
+        <div class="example-card reveal stagger-4">
+          <img src="images/file_0000000098ec71f4a92ee3f1b7357220.png" alt="Resin Figurine">
+          <div class="example-overlay">
+            <span>Resin</span>
+            <h4>High Detail Assembly</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Still Confused? Let Us Help You Choose</h2>
+        <p>Our experts analyze your design and recommend the best material for performance and cost.</p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn btn-accent">
+            <i class="fas fa-upload"></i> Upload Your Design
+          </a>
+          <a href="tel:+919876543210" class="btn btn-outline">
+            <i class="fas fa-user-tie"></i> Contact Expert
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/FULL_NAME_TRANS_LOGO.png" alt="Layer Lab Lineage">
+          <p>Professional 3D printing studio delivering precision prototypes and production-grade parts. Trusted by
+            businesses across industries.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="materials.html">Materials Guide</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#rapid-prototyping">Rapid Prototyping</a></li>
+            <li><a href="services.html#small-batch">Batch Production</a></li>
+            <li><a href="services.html#architecture">Architecture</a></li>
+            <li><a href="services.html#mechanical">Mechanical Engineering</a></li>
+            <li><a href="services.html#automotive">Automotive</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Stay updated with our latest projects and industry insights.</p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Layer Lab Lineage. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP BUTTON ===== -->
+  <a href="https://wa.me/919876543210" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ===== SCROLL TO TOP ===== -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="hero-animation.js"></script>
+  <script src="script.js"></script>
+  
+  <script>
+    // Interactive Material Selector
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const selectorOutput = document.getElementById('selectorOutput');
+    const selectorDesc = document.getElementById('selectorDesc');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class
+        btn.classList.add('active');
+        
+        // Update output
+        const rec = btn.getAttribute('data-rec');
+        const desc = btn.getAttribute('data-desc');
+        
+        // Add a simple pop animation
+        selectorOutput.style.transform = 'scale(0.95)';
+        selectorOutput.style.opacity = '0.5';
+        
+        setTimeout(() => {
+          selectorOutput.innerHTML = `Recommended Material: <span style="color: var(--accent);">${rec}</span>
+            <div style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; margin-top: 8px;">${desc}</div>`;
+          selectorOutput.style.transform = 'scale(1)';
+          selectorOutput.style.opacity = '1';
+        }, 150);
+      });
+    });
+
+    // Chart.js Implementations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Common Options
+      const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            grid: { color: 'rgba(0,0,0,0.05)' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      };
+
+      // Strength Chart
+      const ctxStrength = document.getElementById('strengthChart').getContext('2d');
+      new Chart(ctxStrength, {
+        type: 'bar',
+        data: {
+          labels: ['PLA', 'ABS', 'PETG', 'Nylon', 'TPU'],
+          datasets: [{
+            label: 'Strength Score',
+            data: [60, 85, 75, 95, 30],
+            backgroundColor: [
+              'rgba(91, 108, 255, 0.4)',
+              'rgba(91, 108, 255, 0.6)',
+              'rgba(91, 108, 255, 0.5)',
+              'rgba(91, 108, 255, 1)',
+              'rgba(91, 108, 255, 0.2)'
+            ],
+            borderRadius: 6
+          }]
+        },
+        options: chartOptions
+      });
+
+      // Flexibility Chart
+      const ctxFlex = document.getElementById('flexChart').getContext('2d');
+      new Chart(ctxFlex, {
+        type: 'bar',
+        data: {
+          labels: ['PLA', 'ABS', 'PETG', 'Nylon', 'TPU'],
+          datasets: [{
+            label: 'Flexibility Score',
+            data: [10, 30, 40, 70, 95],
+            backgroundColor: [
+              'rgba(0, 194, 168, 0.2)',
+              'rgba(0, 194, 168, 0.4)',
+              'rgba(0, 194, 168, 0.5)',
+              'rgba(0, 194, 168, 0.8)',
+              'rgba(0, 194, 168, 1)'
+            ],
+            borderRadius: 6
+          }]
+        },
+        options: chartOptions
+      });
+    });
+  </script>
+</body>
+
+</html>

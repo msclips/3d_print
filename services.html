@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Layer Lab Lineage Services — 3D Printing Solutions Across Industries. From concept models to functional parts, we help you design, prototype, and manufacture.">
+  <title>Services | Layer Lab Lineage</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" href="images/LOGO_TRANS.png">
+</head>
+
+<body>
+
+  <!-- ===== PAGE LOADER ===== -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Layer Lab Lineage</div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/LOGO_TRANS.png" alt="Layer Lab Lineage Logo">
+        <span>Layer Lab Lineage</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="services.html" style="color: var(--primary);">Services</a>
+        <a href="materials.html">Materials</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#testimonials">Reviews</a>
+        <a href="index.html#contact" class="btn btn-primary nav-cta">Get a Quote</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO FOR SERVICES ===== -->
+  <section class="hero hero-services" id="hero" style="min-height: 80vh;">
+    <canvas id="heroCanvas"></canvas>
+    <!-- Glow orbs -->
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-cubes"></i> 3D Printing Solutions
+        </div>
+        <h1>
+          <span class="hero-line-1">Solutions Across</span>
+          <span class="hero-line-2">Industries</span>
+        </h1>
+        <p class="hero-description">From concept models to functional parts, we help you design, prototype, and manufacture with precision and speed. Bring your ideas into the real world with high-quality 3D printing tailored for engineering, design, and production needs.</p>
+        <div class="hero-buttons">
+          <a href="index.html#contact" class="btn btn-accent">
+            <i class="fas fa-paper-plane"></i> Get Instant Quote
+          </a>
+          <a href="index.html#portfolio" class="btn btn-outline">
+            <i class="fas fa-images"></i> View Sample Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Hero → Services -->
+  <div class="wave-divider wave-divider-bottom">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#F7F9FC" d="M0,40 C360,100 1080,0 1440,50 L1440,80 L0,80 Z" />
+    </svg>
+  </div>
+
+  <!-- ===== DETAILED SERVICES ===== -->
+  <section class="detailed-services" id="detailed-services">
+    <div class="container">
+      <div class="detailed-services-list">
+        
+        <!-- Architecture -->
+        <div class="detailed-service-item reveal stagger-1" id="architecture">
+          <div class="detailed-service-icon"><i class="fas fa-building"></i></div>
+          <div class="detailed-service-content">
+            <h3>Architecture & Construction</h3>
+            <h4>Bring Designs to Life with Physical Models</h4>
+            <p>Showcase your architectural concepts with highly detailed scale models that make it easier for clients to visualize and approve designs.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Presentation-ready scale models</li>
+              <li><i class="fas fa-check"></i> Site planning and layout visualization</li>
+              <li><i class="fas fa-check"></i> Concept validation for faster approvals</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link">View Sample Work <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Art & Design -->
+        <div class="detailed-service-item reveal stagger-2" id="art-design">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #FF6B6B, #FF8A3D);"><i class="fas fa-palette"></i></div>
+          <div class="detailed-service-content">
+            <h3>Art & Design</h3>
+            <h4>Turn Creative Ideas Into Reality</h4>
+            <p>Transform your imagination into tangible creations with high-resolution 3D prints and smooth finishes.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Intricate and detailed designs</li>
+              <li><i class="fas fa-check"></i> Custom artistic models</li>
+              <li><i class="fas fa-check"></i> Rapid iteration for creative projects</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #FF6B6B;">Explore Designs <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Automotive -->
+        <div class="detailed-service-item reveal stagger-3" id="automotive">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);"><i class="fas fa-car"></i></div>
+          <div class="detailed-service-content">
+            <h3>Automotive Industry</h3>
+            <h4>Accelerate Product Development</h4>
+            <p>From concept prototypes to functional testing parts, we help streamline automotive innovation with precision and durability.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Functional prototypes</li>
+              <li><i class="fas fa-check"></i> Fit and assembly testing</li>
+              <li><i class="fas fa-check"></i> Durable engineering components</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #2563EB;">See Applications <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Mechanical Engineering -->
+        <div class="detailed-service-item reveal stagger-1" id="mechanical">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);"><i class="fas fa-cogs"></i></div>
+          <div class="detailed-service-content">
+            <h3>Mechanical Engineering</h3>
+            <h4>Precision Parts for Real-World Testing</h4>
+            <p>Develop and test mechanical components with high accuracy to ensure performance before full-scale production.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Functional mechanical parts</li>
+              <li><i class="fas fa-check"></i> Assembly and mechanism testing</li>
+              <li><i class="fas fa-check"></i> High-precision engineering models</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #6D28D9;">View Engineering Work <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Electronics -->
+        <div class="detailed-service-item reveal stagger-2" id="electronics">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);"><i class="fas fa-bolt"></i></div>
+          <div class="detailed-service-content">
+            <h3>Electronics & Electrical</h3>
+            <h4>Precision Enclosures & Components</h4>
+            <p>Create custom enclosures and detailed components for electronic systems with excellent accuracy and finish.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> PCB enclosures and housings</li>
+              <li><i class="fas fa-check"></i> Component prototyping</li>
+              <li><i class="fas fa-check"></i> Clean and detailed finishes</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #D97706;">Explore Solutions <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Consumer Goods -->
+        <div class="detailed-service-item reveal stagger-3" id="consumer-goods">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #EC4899, #BE185D);"><i class="fas fa-shopping-bag"></i></div>
+          <div class="detailed-service-content">
+            <h3>Consumer Goods</h3>
+            <h4>Faster Product Development & Validation</h4>
+            <p>Quickly bring product ideas to life and test them in real conditions before investing in mass production.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Product prototyping</li>
+              <li><i class="fas fa-check"></i> Design validation</li>
+              <li><i class="fas fa-check"></i> Faster time-to-market</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #BE185D;">View Product Samples <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="detailed-service-item reveal stagger-1" id="education">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fas fa-graduation-cap"></i></div>
+          <div class="detailed-service-content">
+            <h3>Education Sector</h3>
+            <h4>Enhance Learning with Hands-On Models</h4>
+            <p>Support practical learning with physical models for engineering, design, and research applications.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Educational models and kits</li>
+              <li><i class="fas fa-check"></i> Engineering demonstrations</li>
+              <li><i class="fas fa-check"></i> Research prototypes</li>
+            </ul>
+            <a href="index.html#portfolio" class="service-link" style="color: #059669;">See Educational Models <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Rapid Prototyping -->
+        <div class="detailed-service-item reveal stagger-2" id="rapid-prototyping">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);"><i class="fas fa-rocket"></i></div>
+          <div class="detailed-service-content">
+            <h3>Rapid Prototyping</h3>
+            <h4>From Idea to Prototype—Fast</h4>
+            <p>Speed up your innovation cycle with quick turnaround times and reliable prototyping solutions.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Fast production turnaround</li>
+              <li><i class="fas fa-check"></i> Iterative design testing</li>
+              <li><i class="fas fa-check"></i> Reduced development time</li>
+            </ul>
+            <a href="index.html#contact" class="service-link" style="color: #0D9488;">Start Your Prototype <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Small Batch Production -->
+        <div class="detailed-service-item reveal stagger-3" id="small-batch">
+          <div class="detailed-service-icon" style="background: linear-gradient(135deg, #6366F1, #4338CA);"><i class="fas fa-boxes"></i></div>
+          <div class="detailed-service-content">
+            <h3>Small Batch Production</h3>
+            <h4>Cost-Effective Manufacturing Without Tooling</h4>
+            <p>Produce small quantities of high-quality parts without the need for expensive molds or tooling.</p>
+            <ul class="detailed-service-features">
+              <li><i class="fas fa-check"></i> Low-volume production</li>
+              <li><i class="fas fa-check"></i> Consistent quality</li>
+              <li><i class="fas fa-check"></i> Flexible manufacturing</li>
+            </ul>
+            <a href="index.html#contact" class="service-link" style="color: #4338CA;">Get Production Quote <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Ready to Bring Your Ideas to Life?</h2>
+        <p>Get in touch today for a free consultation and let's discuss how we can help you with your next project.</p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn btn-accent">
+            <i class="fas fa-paper-plane"></i> Request a Quote
+          </a>
+          <a href="tel:+919876543210" class="btn btn-outline">
+            <i class="fas fa-phone"></i> Talk to an Expert
+          </a>
+        </div>
+        <div class="cta-trust-row">
+          <div class="cta-trust-badge"><i class="fas fa-shield-alt"></i> Quality Guaranteed</div>
+          <div class="cta-trust-badge"><i class="fas fa-truck"></i> Free Shipping on Bulk</div>
+          <div class="cta-trust-badge"><i class="fas fa-redo"></i> Revision Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/FULL_NAME_TRANS_LOGO.png" alt="Layer Lab Lineage">
+          <p>Professional 3D printing studio delivering precision prototypes and production-grade parts. Trusted by
+            businesses across industries.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="materials.html">Materials Guide</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#process">Our Process</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#rapid-prototyping">Rapid Prototyping</a></li>
+            <li><a href="services.html#small-batch">Batch Production</a></li>
+            <li><a href="services.html#architecture">Architecture</a></li>
+            <li><a href="services.html#mechanical">Mechanical Engineering</a></li>
+            <li><a href="services.html#automotive">Automotive</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Stay updated with our latest projects and industry insights.</p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Layer Lab Lineage. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP BUTTON ===== -->
+  <a href="https://wa.me/919876543210" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ===== SCROLL TO TOP ===== -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="hero-animation.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
