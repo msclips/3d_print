@@ -56,6 +56,10 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* must sit on html as well as body — overflow-x on body alone still
+     propagates to the viewport, so the page scrolls sideways anyway */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -1158,98 +1162,6 @@ ul {
   letter-spacing: 0.08em;
 }
 
-/* ===== TESTIMONIALS ===== */
-.testimonials {
-  padding: var(--section-py) 0;
-  background: var(--bg);
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.testimonial-card {
-  background: var(--card);
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  border: 1px solid var(--border);
-  transition: var(--transition);
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '\201C';
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  font-size: 5rem;
-  font-weight: 900;
-  color: var(--bg-soft);
-  line-height: 1;
-  font-family: Georgia, serif;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: rgba(91, 108, 255, 0.15);
-}
-
-.testimonial-stars {
-  display: flex;
-  gap: 3px;
-  margin-bottom: 24px;
-}
-
-.testimonial-stars i {
-  color: var(--highlight);
-  font-size: 0.85rem;
-}
-
-.testimonial-card blockquote {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 28px;
-  font-style: normal;
-  position: relative;
-  z-index: 1;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-}
-
-.testimonial-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-.testimonial-author-info h5 {
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.testimonial-author-info p {
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
 /* ===== CTA ===== */
 .cta-section {
   padding: 110px 0;
@@ -1706,6 +1618,16 @@ ul {
     --section-py: 80px;
   }
 
+  /* the 60px pre-reveal offsets overflow a phone viewport (content already
+     spans full width), so slide a shorter distance on small screens */
+  .reveal-left {
+    transform: translateX(-24px);
+  }
+
+  .reveal-right {
+    transform: translateX(24px);
+  }
+
   .nav-links {
     display: none;
     position: fixed;
@@ -1809,10 +1731,6 @@ ul {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1898,15 +1816,16 @@ ul {
 }
 
 /* --- 3D printer loader animation ---
-   One loop = 7 passes of the nozzle: 6 printing passes (one per text layer,
-   revealed bottom-up via stepped clip-path) + 1 "print complete" glow beat.
-   Timings: --pl-pass (one carriage sweep) × 7 = --pl-total (full loop).
-   Layer boundaries sit at multiples of 100/7 ≈ 14.285%. */
+   Vertical build, matching how an FDM printer actually works: the nozzle stays
+   centered over the print and climbs from the bed to full height while the
+   glyph fills bottom-up via clip-path. Both run over the first 85.71% of the
+   loop (6/7); the final 1/7 is the "print complete" glow beat.
+   --pl-pass drives the nozzle's per-layer dip and the extrusion bead pulse. */
 .printer-loader {
-  --pl-w: min(300px, 86vw);
+  --pl-w: min(120px, 40vw);
   --pl-pass: 0.55s;
   --pl-total: 3.85s;
-  --pl-travel: calc(var(--pl-w) - 24px);
+  --pl-lift: 1.2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1918,9 +1837,9 @@ ul {
   width: var(--pl-w);
   display: flex;
   justify-content: center;
-  font-size: clamp(0.95rem, 5vw, 1.35rem);
+  font-size: clamp(3rem, 14vw, 4.5rem);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -1947,44 +1866,49 @@ ul {
   pointer-events: none;
   background: repeating-linear-gradient(180deg,
       transparent 0,
-      transparent calc(16.667% - 1px),
-      rgba(15, 23, 42, 0.5) calc(16.667% - 1px),
-      rgba(15, 23, 42, 0.5) 16.667%);
+      transparent 4px,
+      rgba(15, 23, 42, 0.45) 4px,
+      rgba(15, 23, 42, 0.45) 5px);
 }
 
-/* gantry line: steps up one layer (0.2em = 1.2em line-height / 6) per pass */
+/* gantry: rises continuously from bed to full height as the print grows */
 .print-head {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0.2em;
+  bottom: 0;
   height: 0;
   animation: plHeadY var(--pl-total) linear infinite,
     plHeadFade var(--pl-total) linear infinite;
 }
 
-/* filament being laid on the current pass */
+/* glowing edge of the layer currently being extruded */
 .print-line {
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: -1.5px;
-  width: calc(100% - 12px);
+  width: 1.1em;
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, rgba(0, 194, 168, 0.3), var(--accent));
-  box-shadow: 0 0 8px rgba(0, 229, 199, 0.4);
-  transform-origin: left center;
-  transform: scaleX(0);
-  animation: plLine var(--pl-pass) infinite;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg,
+      transparent,
+      var(--accent) 25%,
+      var(--accent) 75%,
+      transparent);
+  box-shadow: 0 0 8px rgba(0, 229, 199, 0.5);
+  animation: plLine var(--pl-pass) ease-in-out infinite;
 }
 
+/* nozzle sits centered over the print — vertical motion only */
 .print-carriage {
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: 0;
   width: 24px;
   height: 36px;
-  animation: plCarriage var(--pl-pass) infinite;
+  transform: translateX(-50%);
+  animation: plCarriage var(--pl-pass) ease-in-out infinite;
 }
 
 .print-nozzle {
@@ -2028,7 +1952,7 @@ ul {
 }
 
 .print-bed {
-  width: calc(var(--pl-w) + 36px);
+  width: calc(var(--pl-w) + 16px);
   height: 4px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--dark-card), var(--primary-light), var(--dark-card));
@@ -2048,41 +1972,31 @@ ul {
 }
 
 /* carriage sweeps right while printing (0–78%), quick flyback (78–100%) */
+/* nozzle dips to meet each new layer, then lifts — purely vertical */
 @keyframes plCarriage {
-  0% {
-    transform: translateX(0);
-    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-  }
 
-  78% {
-    transform: translateX(var(--pl-travel));
-    animation-timing-function: cubic-bezier(0.5, 0, 0.6, 1);
-  }
-
+  0%,
   100% {
-    transform: translateX(0);
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(2.5px);
   }
 }
 
+/* extrusion bead brightens as the layer is laid down */
 @keyframes plLine {
-  0% {
-    transform: scaleX(0);
-    opacity: 1;
-    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-  }
 
-  78% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-
-  84% {
-    opacity: 0;
-  }
-
+  0%,
   100% {
-    transform: scaleX(0);
-    opacity: 0;
+    opacity: 0.35;
+    width: 0.9em;
+  }
+
+  50% {
+    opacity: 1;
+    width: 1.15em;
   }
 }
 
@@ -2119,39 +2033,17 @@ ul {
   }
 }
 
+/* nozzle climbs steadily from the bed to the top of the glyph */
 @keyframes plHeadY {
 
-  0%,
-  14.28% {
+  0% {
     transform: translateY(0);
   }
 
-  14.29%,
-  28.57% {
-    transform: translateY(-0.2em);
-  }
-
-  28.58%,
-  42.85% {
-    transform: translateY(-0.4em);
-  }
-
-  42.86%,
-  57.14% {
-    transform: translateY(-0.6em);
-  }
-
-  57.15%,
-  71.42% {
-    transform: translateY(-0.8em);
-  }
-
-  71.43%,
   85.71% {
-    transform: translateY(-1em);
+    transform: translateY(-1.2em);
   }
 
-  85.72%,
   100% {
     transform: translateY(-1.2em);
   }
@@ -2176,39 +2068,17 @@ ul {
 }
 
 /* text builds bottom-up, one slice per pass */
+/* glyph fills bottom-up in lockstep with the rising nozzle */
 @keyframes plReveal {
 
-  0%,
-  14.28% {
+  0% {
     clip-path: inset(100% 0 0 0);
   }
 
-  14.29%,
-  28.57% {
-    clip-path: inset(83.34% 0 0 0);
-  }
-
-  28.58%,
-  42.85% {
-    clip-path: inset(66.67% 0 0 0);
-  }
-
-  42.86%,
-  57.14% {
-    clip-path: inset(50% 0 0 0);
-  }
-
-  57.15%,
-  71.42% {
-    clip-path: inset(33.34% 0 0 0);
-  }
-
-  71.43%,
   85.71% {
-    clip-path: inset(16.67% 0 0 0);
+    clip-path: inset(0 0 0 0);
   }
 
-  85.72%,
   100% {
     clip-path: inset(0 0 0 0);
   }
